@@ -3,7 +3,19 @@ import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './AddItemForm';
-import {AppBar, Box, Button, createTheme, IconButton, Menu, ThemeProvider, Toolbar, Typography} from '@mui/material';
+import {
+    AppBar,
+    Box,
+    Button,
+    Container,
+    createTheme,
+    Grid,
+    IconButton,
+    Menu,
+    ThemeProvider,
+    Toolbar,
+    Typography
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
@@ -135,55 +147,64 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{flexGrow: 1}}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{mr: 2}}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                            News
-                        </Typography>
-                        <Button color="inherit">Login</Button>
-                    </Toolbar>
-                </AppBar>
+                <Container>
+                    <AppBar position="static">
+                        <Toolbar>
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{mr: 2}}
+                            >
+                                <MenuIcon/>
+                            </IconButton>
+                            <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                                Todolist
+                            </Typography>
+                            <Button color="inherit" size={'small'} variant={'outlined'}>Logout</Button>
+                        </Toolbar>
+                    </AppBar>
+                    <Grid container sx={{p: '15px'}}>
+                        <AddItemForm addItem={addTodolist}/>
+                    </Grid>
+                    <Grid>
+                        <div className="App" style={{display: 'flex', alignItems: 'flex-start'}}>
+                            {
+                                todolists.map(tl => {
+                                    let allTodolistTasks = tasks[tl.id];
+                                    let tasksForTodolist = allTodolistTasks;
+
+                                    if (tl.filter === "active") {
+                                        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
+                                    }
+                                    if (tl.filter === "completed") {
+                                        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
+                                    }
+
+                                    return <Todolist
+                                        key={tl.id}
+                                        id={tl.id}
+                                        title={tl.title}
+                                        tasks={tasksForTodolist}
+                                        removeTask={removeTask}
+                                        changeFilter={changeFilter}
+                                        addTask={addTask}
+                                        changeTaskStatus={changeStatus}
+                                        filter={tl.filter}
+                                        removeTodolist={removeTodolist}
+                                        changeTaskTitle={changeTaskTitle}
+                                        changeTodolistTitle={changeTodolistTitle}
+                                    />
+                                })
+                            }
+                        </div>
+                    </Grid>
+
+                </Container>
+
             </Box>
-            <div className="App" style={{ alignItems: 'flex-start'}}>
-                <AddItemForm addItem={addTodolist}/>
-                {
-                    todolists.map(tl => {
-                        let allTodolistTasks = tasks[tl.id];
-                        let tasksForTodolist = allTodolistTasks;
 
-                        if (tl.filter === "active") {
-                            tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
-                        }
-                        if (tl.filter === "completed") {
-                            tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
-                        }
-
-                        return <Todolist
-                            key={tl.id}
-                            id={tl.id}
-                            title={tl.title}
-                            tasks={tasksForTodolist}
-                            removeTask={removeTask}
-                            changeFilter={changeFilter}
-                            addTask={addTask}
-                            changeTaskStatus={changeStatus}
-                            filter={tl.filter}
-                            removeTodolist={removeTodolist}
-                            changeTaskTitle={changeTaskTitle}
-                            changeTodolistTitle={changeTodolistTitle}
-                        />
-                    })
-                }
-            </div>
         </ThemeProvider>
 
     );
