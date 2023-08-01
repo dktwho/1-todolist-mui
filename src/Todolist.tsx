@@ -75,7 +75,7 @@ export function Todolist(props: PropsType) {
             }
         </ul>
         <div>
-            <Button sx={{mr: '5px'}} color={props.filter === 'all' ? 'secondary' : 'primary'} size={'small'} variant={'contained'}
+            <Button sx={{  mr: '5px'}} color={props.filter === 'all' ? 'secondary' : 'primary'} size={'small'} variant={'contained'}
                     onClick={onAllClickHandler}>All
             </Button>
             <Button sx={{mr: '5px'}} color={props.filter === 'active' ? 'secondary' : 'primary'} size={'small'} variant={'contained'}

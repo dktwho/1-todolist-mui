@@ -4,7 +4,7 @@ import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './AddItemForm';
 import {createTheme, ThemeProvider } from '@mui/material';
-import {blue, green} from '@mui/material/colors';
+
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -123,7 +123,9 @@ function App() {
     const theme = createTheme({
         palette: {
             primary: {
-                main: green[500],
+                main: '#2e7d32',
+                light: '#4caf50',
+                dark: '#1b5e20',
             },
         },
     });

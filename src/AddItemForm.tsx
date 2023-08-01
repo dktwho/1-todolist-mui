@@ -36,11 +36,12 @@ export function AddItemForm(props: AddItemFormPropsType) {
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
                    className={error ? "error" : ""}
-
-
+                   error={!!error}
+                   helperText={error}
+                   title={'type here'}
+                   label={'type value'}
         />
         <Button onClick={addItem}><AddCircleIcon/></Button>
 
-        {error && <div  className="error-message">{error}</div>}
     </div>
 }
