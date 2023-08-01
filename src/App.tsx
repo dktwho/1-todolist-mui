@@ -153,7 +153,7 @@ function App() {
                     </Toolbar>
                 </AppBar>
             </Box>
-            <div className="App">
+            <div className="App" style={{ alignItems: 'flex-start'}}>
                 <AddItemForm addItem={addTodolist}/>
                 {
                     todolists.map(tl => {

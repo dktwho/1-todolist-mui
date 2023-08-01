@@ -31,7 +31,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
         }
     }
 
-    return <div>
+    return <div style={{display:'flex', alignItems: 'center'}}>
         <TextField value={title} variant="outlined"
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
@@ -41,7 +41,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
                    title={'type here'}
                    label={'type value'}
         />
-        <Button onClick={addItem}><AddCircleIcon/></Button>
+        <Button  onClick={addItem}><AddCircleIcon/></Button>
 
     </div>
 }
