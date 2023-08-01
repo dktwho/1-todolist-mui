@@ -156,8 +156,8 @@ function App() {
                         </IconButton>
                         <Typography variant={"h6"}>TodoLists</Typography>
 
-                        <Switch
-                            onClick={() => setIsLightMode(!isLightMode)}
+                        <Switch defaultChecked color="default"
+                                onClick={() => setIsLightMode(!isLightMode)}
                         />
 
                         <Button
