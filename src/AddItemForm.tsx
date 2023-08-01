@@ -31,7 +31,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
         }
     }
 
-    return <div style={{display:'flex', alignItems: 'flex-start'}}>
+    return <div style={{display: 'flex', alignItems: 'flex-start'}}>
         <TextField value={title} variant="outlined"
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
@@ -42,7 +42,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
                    label={'type value'}
 
         />
-        <Button  sx={{mt: '8px'}}  onClick={addItem}><AddCircleIcon/></Button>
+        <Button sx={{mt: '8px'}} onClick={addItem}><AddCircleIcon/></Button>
 
     </div>
 }
