@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import {AddItemForm} from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
-import {Button, Checkbox, IconButton} from '@mui/material';
+import {Button, Checkbox, IconButton, List, ListItem} from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { pink } from '@mui/material/colors';
 
@@ -48,7 +48,7 @@ export function Todolist(props: PropsType) {
             <IconButton color="secondary" onClick={removeTodolist}> <Delete /></IconButton>
         </h3>
         <AddItemForm addItem={addTask}/>
-        <ul>
+        <List>
             {
                 props.tasks.map(t => {
                     const onClickHandler = () => props.removeTask(t.id, props.id)
@@ -61,7 +61,7 @@ export function Todolist(props: PropsType) {
                     }
 
 
-                    return <div key={t.id} className={t.isDone ? "is-done" : ""}>
+                    return <ListItem key={t.id} className={t.isDone ? "is-done" : ""} sx={{mt: '1px'}} >
                         <Checkbox  sx={{
                             color: pink[800],
                             '&.Mui-checked': {
@@ -70,10 +70,10 @@ export function Todolist(props: PropsType) {
                         }}  defaultChecked color="success"  onChange={onChangeHandler} checked={t.isDone}/>
                         <EditableSpan value={t.title} onChange={onTitleChangeHandler}/>
                         <IconButton onClick={onClickHandler}><Delete fontSize="small" /></IconButton>
-                    </div>
+                    </ListItem>
                 })
             }
-        </ul>
+        </List>
         <div>
             <Button sx={{  mr: '5px'}} color={props.filter === 'all' ? 'secondary' : 'primary'} size={'small'} variant={'contained'}
                     onClick={onAllClickHandler}>All
