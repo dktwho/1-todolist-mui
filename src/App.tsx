@@ -3,16 +3,22 @@ import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './AddItemForm';
-import {
-    AppBar, Button, Container,
-    createTheme,
-    CssBaseline, Grid, IconButton, Paper,
-    Switch,
-    ThemeProvider,
-    Toolbar, Typography
-} from "@mui/material";
-import {green, lightGreen} from "@mui/material/colors";
+
+
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Toolbar from '@mui/material/Toolbar';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
+import Typography from '@mui/material/Typography';
 import {Menu} from "@mui/icons-material";
+import IconButton from '@mui/material/IconButton';
+import {green, lightGreen} from "@mui/material/colors";
+
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -186,10 +192,9 @@ function App() {
                                     tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
                                 }
 
-                                return <Grid item>
+                                return <Grid item key={tl.id}>
                                     <Paper sx={{p: "15px"}} elevation={8}>
                                         <Todolist
-                                            key={tl.id}
                                             id={tl.id}
                                             title={tl.title}
                                             tasks={tasksForTodolist}
