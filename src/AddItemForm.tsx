@@ -1,5 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Button, TextField} from '@mui/material';
+
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 type AddItemFormPropsType = {
@@ -40,6 +43,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
                    helperText={error ? 'Title is required' : undefined}
                    title={'type here'}
                    label={'type value'}
+                   defaultChecked
 
         />
         <Button sx={{mt: '8px'}} onClick={addItem}><AddCircleIcon/></Button>

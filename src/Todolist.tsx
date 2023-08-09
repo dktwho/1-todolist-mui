@@ -2,7 +2,14 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import {AddItemForm} from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
-import {Button, Checkbox, IconButton, List, ListItem} from '@mui/material';
+
+
+
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import {Delete} from '@mui/icons-material';
 import {pink} from '@mui/material/colors';
 
@@ -12,6 +19,7 @@ export type TaskType = {
     title: string
     isDone: boolean
 }
+
 
 type PropsType = {
     id: string
@@ -44,7 +52,7 @@ export function Todolist(props: PropsType) {
     const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
 
     return <div>
-        <h3><EditableSpan value={props.title} onChange={changeTodolistTitle}/>
+        <h3><EditableSpan value={props.title} onChange={changeTodolistTitle}  />
             <IconButton color="secondary" onClick={removeTodolist}> <Delete/></IconButton>
         </h3>
         <AddItemForm addItem={addTask}/>
@@ -62,13 +70,13 @@ export function Todolist(props: PropsType) {
 
 
                     return <ListItem key={t.id} className={t.isDone ? "is-done" : ""} sx={{mt: '1px'}}>
-                        <Checkbox sx={{
+                        <Checkbox  sx={{
                             color: pink[800],
                             '&.Mui-checked': {
                                 color: pink[500],
                             },
                         }} defaultChecked color="success" onChange={onChangeHandler} checked={t.isDone}/>
-                        <EditableSpan value={t.title} onChange={onTitleChangeHandler}/>
+                        <EditableSpan value={t.title} onChange={onTitleChangeHandler} />
                         <IconButton onClick={onClickHandler}><Delete fontSize="small"/></IconButton>
                     </ListItem>
                 })
